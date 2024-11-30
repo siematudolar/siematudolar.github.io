@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Satan Images</title>
+    <style>
+        /* Reset margins and padding */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #393c40; /* Dark background for scary effect */
+            color: white; /* Default text color */
+        }
+
+        /* Header and Footer Styling */
+        header, footer {
+            display: flex; /* Use flexbox to align content */
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically */
+            height: 60px; /* Fixed height for header and footer */
+            background-color: 393c40; /* Optional background for better visibility */
+            overflow: hidden; /* Hide any overflow to prevent scrollbars */
+            position: relative; /* So that text can scroll across it */
+}
+
+        /* Styling for the container */
+        .container {
+            display: flex; /* Align items in a row */
+            justify-content: center; /* Centers items horizontally */
+            align-items: center; /* Centers items vertically */
+            flex-direction: column; /* Arrange icons and text in a vertical column */
+            gap: 20px; /* Adds space between the icons and the text */
+            height: calc(100vh - 120px); /* Adjusts height to account for header and footer */
+        }
+
+        /* Row container for icons and Edgy Guy */
+        .icon-row {
+            display: flex; /* Align items in a row */
+            justify-content: center; /* Center the icons horizontally */
+            align-items: center; /* Center the icons vertically */
+            gap: 20px; /* Adds space between icons */
+        }
+
+        /* Common styling for all icons */
+        .icon img {
+            background-color: white;
+            width: 50px; /* Set all icons to the same size */
+            height: 50px; /* Ensures icons are uniform in size */
+            border-radius: 20px;
+            padding: 10px;
+            border: 3px solid black;
+            box-shadow: 4px 4px rgba(151, 142, 142, 0.5) ;
+        }
+
+        /* Styling for the ziutek div */
+        .ziutek img {
+            width: 280px; /* Makes ziutek icon larger */
+            height: 280px; /* Ensures proportional size */
+        }
+
+        /* Flashing Text Styling */
+        .flashing-text {
+            font-family: 'Creepster', cursive; /* Scary font, use a Google Font or local font */
+            font-size: 2rem; /* Adjust size as needed */
+            text-align: center; /* Center text under the icons */
+            margin-top: 20px; /* Adds space between icons and text */
+            color: gray; /* Initial text color */
+            text-shadow: 0 0 10px rgba(109, 109, 109, 0.7); /* Glowing effect */
+            animation: screamer 0.5s infinite alternate; /* Flashes the text */
+        }
+
+        /* Screamer animation */
+        @keyframes screamer {
+            0% {
+                color: gray;
+                text-shadow: 0 0 10px rgba(109, 109, 109, 0.7);
+            }
+            50% {
+                color: white;
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+            }
+            100% {
+                color: black;
+                text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        /* Google Font Import */
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+         /* Scrolling quote container */
+         .scrolling-quote {
+            position: absolute; /* Allow the quote to scroll across */
+            white-space: nowrap; /* Prevent wrapping of text */
+            font-size: 1.5rem; /* Adjust the font size of the quotes */
+            color: red;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Glowing effect */
+            animation: scroll-left 15s linear infinite; /* Default to left-to-right */
+        }
+
+        /* Animation for scrolling quotes */
+        @keyframes scroll-left {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: -100%;
+            }
+        }
+
+        @keyframes scroll-right {
+            0% {
+                right: 100%;
+            }
+            100% {
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header><div class="scrolling-quote" id="header-quote"></div></header>
+    <div class="container">
+        <div class="icon-row">
+            <div class="icon">
+                <img src="x.svg" alt="Twitter Icon">
+            </div>
+            <div class="icon">
+                <img src="telegram.svg" alt="Telegram Icon">
+            </div>
+            <div class="icon">
+                <img src="crypto.svg" alt="Crypto Icon">
+            </div>
+            <div class="ziutek">
+                <img src="edgy.png" alt="Edgy Guy">
+            </div>
+        </div>
+        <!-- Flashing Text -->
+        <div class="flashing-text" id="flashing-text"></div>
+    </div>
+    <footer><div class="scrolling-quote" id="footer-quote"></div></footer>
+    <script>
+        // Array of random quotes
+        const quotes = [
+            "edgy guy is lifechanging",
+            "edgy gut is the future",
+            "when you buy edgy guy, all chiks are yours",
+            "gay? if no, get yourself edgy guy",
+            "edgy guy is better than sex"
+        ];
+
+            // Function to pick a random quote
+            function getRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            return quotes[randomIndex];
+        }
+
+        // Function to pick a random direction for the scrolling
+        function getRandomDirection() {
+            return Math.random() > 0.5 ? 'scroll-left' : 'scroll-right';
+        }
+
+        // Function to set random quote with random direction
+        function setRandomQuote(elementId) {
+            const quote = getRandomQuote();
+            const quoteElement = document.getElementById(elementId);
+            quoteElement.textContent = quote;
+
+            // Set the appropriate animation for random scrolling direction
+            const randomDirection = getRandomDirection();
+            quoteElement.style.animation = `${randomDirection} 15s linear infinite`;
+        }
+
+        // Function to simulate typing effect
+        function typeText(text, elementId, callback) {
+        const element = document.getElementById(elementId);
+        let index = 0;
+        element.textContent = ''; // Clear any previous text
+        const typingInterval = setInterval(() => {
+            element.textContent += text.charAt(index);
+            index++;
+            if (index === text.length) {
+                clearInterval(typingInterval);
+                setTimeout(() => {
+                    callback(); // Wait 5 seconds before changing text
+                }, 5000); // Wait for 5 seconds before changing the text
+            }
+         }, 100); // Typing speed
+}
+
+        function changeFlashingText() {
+            const quote = getRandomQuote();
+            const flashingTextElement = document.getElementById('flashing-text');
+            typeText(quote, 'flashing-text', () => {
+                setTimeout(changeFlashingText, 0); // Immediately change text after waiting
+            });
+}
+
+        // Initial setup
+        setRandomQuote('header-quote');
+        setRandomQuote('footer-quote');
+        changeFlashingText(); // Start typing effect with first quote
+    </script>
+</body>
+</html>
