@@ -117,6 +117,47 @@
                 right: -100%;
             }
         }
+         @media (max-width: 768px) {
+            /* On smaller screens, reduce the size of the text and icons */
+            .scrolling-quote {
+                font-size: 5vw;
+            }
+
+            .flashing-text {
+                font-size: 6vw;
+            }
+
+            .icon img {
+                width: 40px; /* Smaller icons on mobile */
+                height: 40px;
+            }
+
+            .ziutek img {
+                width: 100px; /* Adjust "Edgy Guy" size */
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* On very small screens (like phones), reduce the font sizes even more */
+            .scrolling-quote {
+                font-size: 8vw;
+            }
+
+            .flashing-text {
+                font-size: 10vw;
+            }
+
+            .icon img {
+                width: 35px; /* Even smaller icons */
+                height: 35px;
+            }
+
+            .ziutek img {
+                width: 80px; /* Adjust "Edgy Guy" size */
+                height: 80px;
+            }
+        }
     </style>
 </head>
 <body>
