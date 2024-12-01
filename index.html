@@ -5,101 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Satan Images</title>
     <style>
-        /* Reset margins and padding */
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: #393c40; /* Dark background for scary effect */
-            color: white; /* Default text color */
+            font-family: 'VT323', sans-serif;
+            background: #393c40;
+            color: white;
         }
-
-        /* Header and Footer Styling */
         header, footer {
-            display: flex; /* Use flexbox to align content */
-            justify-content: center; /* Center the content horizontally */
-            align-items: center; /* Center the content vertically */
-            height: 60px; /* Fixed height for header and footer */
-            background-color: 393c40; /* Optional background for better visibility */
-            overflow: hidden; /* Hide any overflow to prevent scrollbars */
-            position: relative; /* So that text can scroll across it */
-}
-
-        /* Styling for the container */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            background-color: 393c40;
+            overflow: hidden;
+            position: relative;
+        }
         .container {
-            display: flex; /* Align items in a row */
-            justify-content: center; /* Centers items horizontally */
-            align-items: center; /* Centers items vertically */
-            flex-direction: column; /* Arrange icons and text in a vertical column */
-            gap: 20px; /* Adds space between the icons and the text */
-            height: calc(100vh - 120px); /* Adjusts height to account for header and footer */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+            height: calc(100vh - 120px);
         }
-
-        /* Row container for icons and Edgy Guy */
         .icon-row {
-            display: flex; /* Align items in a row */
-            justify-content: center; /* Center the icons horizontally */
-            align-items: center; /* Center the icons vertically */
-            gap: 20px; /* Adds space between icons */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
         }
-
-        /* Common styling for all icons */
         .icon img {
             background-color: white;
-            width: 50px; /* Set all icons to the same size */
-            height: 50px; /* Ensures icons are uniform in size */
+            width: 50px;
+            height: 50px;
             border-radius: 20px;
             padding: 10px;
             border: 3px solid black;
-            box-shadow: 4px 4px rgba(151, 142, 142, 0.5) ;
+            box-shadow: 4px 4px rgba(151, 142, 142, 0.5);
         }
-
-        /* Styling for the ziutek div */
         .ziutek img {
-            width: 150px; /* Makes ziutek icon larger */
-            height: 250px; /* Ensures proportional size */
+            width: 150px;
+            height: 250px;
         }
-
-        /* Flashing Text Styling */
         .flashing-text {
-            font-family: 'Creepster', cursive; /* Scary font, use a Google Font or local font */
-            font-size: 2rem; /* Adjust size as needed */
-            text-align: center; /* Center text under the icons */
-            margin-top: 20px; /* Adds space between icons and text */
-            color: gray; /* Initial text color */
-            text-shadow: 0 0 10px rgba(109, 109, 109, 0.7); /* Glowing effect */
-            animation: screamer 0.5s infinite alternate; /* Flashes the text */
+            font-family: 'VT323';
+            font-size: 2rem;
+            text-align: center;
+            margin-top: 20px;
+            color: gray;
+            text-shadow: 0 0 10px rgba(109, 109, 109, 0.7);
+            animation: screamer 0.5s infinite alternate;
         }
-
-        /* Screamer animation */
-        @keyframes screamer {
-            0% {
-                color: gray;
-                text-shadow: 0 0 10px rgba(109, 109, 109, 0.7);
-            }
-            50% {
-                color: white;
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
-            }
-            100% {
-                color: black;
-                text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-            }
+        .scrolling-quote {
+            position: absolute;
+            white-space: nowrap;
+            font-size: 1.5rem;
+            color: gray;
+            text-shadow: 0 0 10px rgba(141, 141, 141, 0.7);
+            animation: scroll-left 15s linear infinite;
         }
-
-        /* Google Font Import */
-        @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
-         /* Scrolling quote container */
-         .scrolling-quote {
-            position: absolute; /* Allow the quote to scroll across */
-            white-space: nowrap; /* Prevent wrapping of text */
-            font-size: 1.5rem; /* Adjust the font size of the quotes */
-            color: red;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Glowing effect */
-            animation: scroll-left 15s linear infinite; /* Default to left-to-right */
-        }
-
-        /* Animation for scrolling quotes */
         @keyframes scroll-left {
             0% {
                 left: 100%;
@@ -108,7 +74,6 @@
                 left: -100%;
             }
         }
-
         @keyframes scroll-right {
             0% {
                 right: 100%;
@@ -117,47 +82,109 @@
                 right: -100%;
             }
         }
-         @media (max-width: 768px) {
-            /* On smaller screens, reduce the size of the text and icons */
-            .scrolling-quote {
-                font-size: 5vw;
-            }
+        @media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack items vertically */
+    }
 
-            .flashing-text {
-                font-size: 6vw;
-            }
+    .icon-row {
+        flex-direction: row; /* Icons remain in a row */
+    }
 
-            .icon img {
-                width: 40px; /* Smaller icons on mobile */
-                height: 40px;
-            }
+    .ziutek {
+        order: 2; /* Move ziutek to the middle */
+    }
 
-            .ziutek img {
-                width: 100px; /* Adjust "Edgy Guy" size */
-                height: 100px;
-            }
-        }
+    .flashing-text {
+        order: 3; /* Place flashing text below ziutek */
+        font-size: 6vw; /* Responsive font size */
+    }
 
-        @media (max-width: 480px) {
-            /* On very small screens (like phones), reduce the font sizes even more */
-            .scrolling-quote {
-                font-size: 8vw;
-            }
+    .icon-row {
+        order: 1; /* Icons are positioned first */
+    }
 
-            .flashing-text {
-                font-size: 10vw;
-            }
+    .icon img {
+        width: 40px; /* Smaller icons on mobile */
+        height: 40px;
+    }
 
-            .icon img {
-                width: 35px; /* Even smaller icons */
-                height: 35px;
-            }
+    .ziutek img {
+        width: 100px; /* Adjust "Edgy Guy" size */
+        height: 150px;
+    }
+}
 
-            .ziutek img {
-                width: 80px; /* Adjust "Edgy Guy" size */
-                height: 80px;
-            }
-        }
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
+        gap: 20px; /* Add space between stacked items */
+    }
+
+    .icon-row {
+        display: flex;
+        flex-direction: row; /* Icons stay in a horizontal row */
+        justify-content: center; /* Center icons */
+        gap: 15px; /* Space between icons */
+        order: 1; /* Ensure icons are first */
+    }
+
+    .ziutek {
+        order: 2; /* Place Ziutek below the icons */
+        display: flex;
+        justify-content: center; /* Center Ziutek */
+    }
+
+    .ziutek img {
+        width: 120px; /* Resize Ziutek for smaller screens */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .flashing-text {
+        order: 3; /* Flashing text comes last */
+        font-size: 5vw; /* Adjust font size for smaller screens */
+        text-align: center; /* Center text */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        flex-direction: column; /* Stack everything vertically */
+        align-items: center; /* Center everything horizontally */
+        gap: 15px;
+    }
+
+    .icon-row {
+        gap: 10px; /* Space between icons on smaller screens */
+    }
+
+    .ziutek {
+        order: 2; /* Ensure Ziutek is second */
+        display: flex;
+        justify-content: center; /* Center Ziutek */
+    }
+
+    .ziutek img {
+        width: 100px; /* Resize Ziutek further for smaller screens */
+        height: auto;
+    }
+
+    .flashing-text {
+        order: 3; /* Flashing text is last */
+        font-size: 6vw; /* Adjust font size for smaller screens */
+        text-align: center;
+    }
+
+    .icon img {
+        width: 30px; /* Resize icons for smaller screens */
+        height: 30px;
+    }
+}
+
+
+
     </style>
 </head>
 <body>
@@ -177,71 +204,75 @@
                 <img src="edgy.png" alt="Edgy Guy">
             </div>
         </div>
-        <!-- Flashing Text -->
         <div class="flashing-text" id="flashing-text"></div>
     </div>
     <footer><div class="scrolling-quote" id="footer-quote"></div></footer>
     <script>
-        // Array of random quotes
         const quotes = [
             "edgy guy is lifechanging",
-            "edgy gut is the future",
+            "edgy guy is the future",
             "when you buy edgy guy, all chiks are yours",
             "gay? if no, get yourself edgy guy",
             "edgy guy is better than sex"
         ];
 
-            // Function to pick a random quote
-            function getRandomQuote() {
+        function getRandomQuote() {
             const randomIndex = Math.floor(Math.random() * quotes.length);
             return quotes[randomIndex];
         }
 
-        // Function to pick a random direction for the scrolling
         function getRandomDirection() {
             return Math.random() > 0.5 ? 'scroll-left' : 'scroll-right';
         }
 
-        // Function to set random quote with random direction
         function setRandomQuote(elementId) {
             const quote = getRandomQuote();
             const quoteElement = document.getElementById(elementId);
             quoteElement.textContent = quote;
-
-            // Set the appropriate animation for random scrolling direction
             const randomDirection = getRandomDirection();
-            quoteElement.style.animation = `${randomDirection} 15s linear infinite`;
+            quoteElement.style.animation = `${randomDirection} 40s linear infinite`;
         }
 
-        // Function to simulate typing effect
         function typeText(text, elementId, callback) {
-        const element = document.getElementById(elementId);
-        let index = 0;
-        element.textContent = ''; // Clear any previous text
-        const typingInterval = setInterval(() => {
-            element.textContent += text.charAt(index);
-            index++;
-            if (index === text.length) {
-                clearInterval(typingInterval);
-                setTimeout(() => {
-                    callback(); // Wait 5 seconds before changing text
-                }, 5000); // Wait for 5 seconds before changing the text
-            }
-         }, 100); // Typing speed
-}
+            const element = document.getElementById(elementId);
+            let index = 0;
+            element.textContent = '';
+            const typingInterval = setInterval(() => {
+                element.textContent += text.charAt(index);
+                index++;
+                if (index === text.length) {
+                    clearInterval(typingInterval);
+                    setTimeout(() => {
+                        deleteText(elementId, callback);
+                    }, 5000);
+                }
+            }, 100);
+        }
+
+        function deleteText(elementId, callback) {
+            const element = document.getElementById(elementId);
+            let text = element.textContent;
+            const deletingInterval = setInterval(() => {
+                text = text.slice(0, -1);
+                element.textContent = text;
+                if (text.length === 0) {
+                    clearInterval(deletingInterval);
+                    callback();
+                }
+            }, 50);
+        }
 
         function changeFlashingText() {
             const quote = getRandomQuote();
             const flashingTextElement = document.getElementById('flashing-text');
             typeText(quote, 'flashing-text', () => {
-                setTimeout(changeFlashingText, 0); // Immediately change text after waiting
+                setTimeout(changeFlashingText, 0);
             });
-}
+        }
 
-        // Initial setup
         setRandomQuote('header-quote');
         setRandomQuote('footer-quote');
-        changeFlashingText(); // Start typing effect with first quote
+        changeFlashingText();
     </script>
 </body>
 </html>
